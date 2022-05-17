@@ -1,0 +1,100 @@
+package dao;
+
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import model.Cadastrorealizado;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Darian
+ */
+public class controle_tabela {
+    
+    
+    String pathFileTemp = "dbTemp.txt";
+    String readFile = "";
+
+    public static void salvar_para_arquivo
+	(String frase, String nome_do_arquivo) throws
+	    FileNotFoundException, IOException {
+        
+        //Fluxo de saida de um arquivo
+        OutputStream os = new FileOutputStream(nome_do_arquivo); // nome do arquivo que será escrito
+        Writer wr = new OutputStreamWriter(os); // criação de um escritor
+        BufferedWriter br = new BufferedWriter(wr); // adiciono a um escritor de buffer
+        
+	br.write(frase);
+	br.newLine();
+	br.close();
+    }
+    
+    public static void mostrar_dados(String pathLivro, String pathAluno)
+	throws IOException{
+        String readLine;
+        File file = new File(pathLivro);
+        File file2 = new File(pathAluno);
+
+	//   Id ; Aluno ; Nome Do Livro ; Editora ; Data Do
+	//   Empréstimo ; Data Da Devolução ; Turma/Curso
+
+        if (!file.exists()) {
+	    System.out.println("Não há nenhum livro sendo emprestado");
+        }
+        
+        if (!file2.exists()) {
+	    System.out.println("Não há nenhum aluno cadastrado");
+        }
+        
+        BufferedReader bufReader;
+        try (FileReader reader = new FileReader(file) && FileReader reader2 = new FileReader(file2)) {
+            bufReader = new BufferedReader(reader);
+	    bufReader2 = new BufferedReader(reader2);
+	    String[] splitData1;
+	    String[] splitData2;
+	    while ((readLine = bufReader.readLine()) != null) {
+		if (readLine.equals("")){
+		}
+		// idAluno ; nomeLivro ; editora ; dataEmprestimo ; dataDevolucao;
+              
+		Cadastrorealizado rm = new Cadastrorealizado();
+		splitData1 = readLine.split(" ; ");
+	
+	    }            
+
+		while ((readLine = bufReader.readLine()) != null) {
+		    if (readLine.equals("")){
+		    }
+		    // idAluno  " ; "  nomeCompleto  " ; " turma;
+		    splitData2 = readLine.split(" ; ");
+		    /*rm.setId(splitData[0]);
+		      rm.setAluno(splitData[1]);
+		      rm.setNomedoLivro(splitData[2]);
+		      rm.setEditora((splitData[3]));
+		      rm.setDatadeEmprestimo(splitData[4]);*/              
+		}
+
+
+	}
+
+
+	String[] dadosDaTabela
+	    
+    
+    }
+}
